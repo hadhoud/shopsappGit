@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class contactusTableViewController: UITableViewController , UITextFieldDelegate , UIPickerViewDelegate , UIPickerViewDataSource {
     
     @IBOutlet weak var phone: hhstextfield!
@@ -43,7 +42,6 @@ class contactusTableViewController: UITableViewController , UITextFieldDelegate 
         let user_token = base_api().load(key : "token")
         
         if phone.validate() && !(self.descritptions.gettext() == "") && email.emailtruebool{
-            
             
             contactus(auth_token: user_token, email_title: email_title.text ?? " ", email_type: type.text ?? " " , description: descritptions.gettext() , email: email.text ?? " ", phone: phone.text ?? " ")
             
