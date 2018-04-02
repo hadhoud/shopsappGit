@@ -1,0 +1,26 @@
+
+
+check status in add edit or delete if method not allowed to redirect to login
+
+// hadi --- mean finish
+ask hassan about productme
+self.view.isUserInteractionEnabled = false
+----keyboard observers (signupcontact addproductsignup)
+----return in mainsearch for keyboard
+----return in signup for keyboard
+----view endediting add productprovider
+----view endediting add productsignup
+----view will appear login clear text
+----change myshop to login tab bar after logout
+----design card view in addproduct signup
+add swipe left to delete in addproduct signup
+---add back with alert in signup contact to prvent back loose data
+description return in keyboard
+add product price check no empty in signup
+
+
+// hassan
+map location alert after search
+add view to shopcontactinfo for provider
+check code (search - signup - contactus)
+
