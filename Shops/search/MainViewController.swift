@@ -29,13 +29,13 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
         locationManager.startUpdatingLocation()
         self.searchtext.delegate = self
          base_api().save(key: "token", value: "")
-        let titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        self.segment.setTitleTextAttributes(titleTextAttributes, for: .normal)
-        self.segment.setTitleTextAttributes(titleTextAttributes, for: .selected)
-        self.segment.layer.borderWidth = 2
-        self.segment.layer.borderColor = UIColor.init(red: 84/255, green: 47/255, blue: 82/255, alpha: 1.0).cgColor
-        self.segment.layer.cornerRadius = 5
-        self.segment.layer.masksToBounds = true
+     //   let titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+       // self.segment.setTitleTextAttributes(titleTextAttributes, for: .normal)
+     //   self.segment.setTitleTextAttributes(titleTextAttributes, for: .selected)
+      //  self.segment.layer.borderWidth = 2
+       // self.segment.layer.borderColor = UIColor.init(red: 84/255, green: 47/255, blue: 82/255, alpha: 1.0).cgColor
+      //  self.segment.layer.cornerRadius = 5
+        //self.segment.layer.masksToBounds = true
     }
     
     
@@ -63,8 +63,8 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
             type = base_api().search_by_product()
             self.searchtext.imag = nil
             self.searchtext.overlaybutton.removeTarget(self, action: #selector(self.categoryclicked), for: .touchUpInside)
-            //neww commit hasan
-            self.searchtext.placeholder = "Name Oof Product"
+           
+            self.searchtext.placeholder = "Name Of Product"
         }
             //search by description
         else if sender.selectedSegmentIndex == 1{

@@ -23,6 +23,9 @@
         <array key="TimesNewRoman.ttf">
             <string>TimesNewRomanPSMT</string>
         </array>
+        <array key="TimesNewRomanBold.ttf">
+            <string>TimesNewRomanPS-BoldMT</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Shops Details-->
@@ -699,7 +702,7 @@
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.36470588240000001" green="0.2901960784" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.99910277130000003" green="0.14712172749999999" blue="0.0014433269389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -730,19 +733,19 @@
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="500" minValue="100" maxValue="10000" translatesAutoresizingMaskIntoConstraints="NO" id="N8K-c3-BcZ">
                                         <rect key="frame" x="10" y="230" width="201" height="36"/>
-                                        <color key="tintColor" red="0.32843899729999998" green="0.18389979000000001" blue="0.32168096299999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="0.001903493539" green="0.50137281420000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="7WI-w1-dKm"/>
                                         </constraints>
-                                        <color key="maximumTrackTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="thumbTintColor" red="0.32843899729999998" green="0.18389979000000001" blue="0.32168096299999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="maximumTrackTintColor" red="0.99910277128219604" green="0.14712172746658325" blue="0.0014433269388973713" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="thumbTintColor" red="0.001903493539" green="0.50137281420000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="sliderchangevalue:" destination="h7e-TR-Hrd" eventType="valueChanged" id="pHq-3P-fRb"/>
                                         </connections>
                                     </slider>
                                     <segmentedControl autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mxd-hz-bLz" colorLabel="IBBuiltInLabel-Red">
                                         <rect key="frame" x="12" y="40" width="390" height="34"/>
-                                        <color key="backgroundColor" red="0.32843899729999998" green="0.18389979000000001" blue="0.32168096299999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="HZY-2V-nV1"/>
                                         </constraints>
@@ -753,7 +756,7 @@
                                                 <size key="contentOffset" width="0.0" height="1"/>
                                             </segment>
                                         </segments>
-                                        <color key="tintColor" red="0.36470588240000001" green="0.2901960784" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="0.001903493539" green="0.50137281420000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="segmentclick:" destination="h7e-TR-Hrd" eventType="valueChanged" id="qAA-Au-1HU"/>
                                         </connections>
@@ -764,7 +767,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="GMH-F9-x1j"/>
                                         </constraints>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.001903493539" green="0.50137281420000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet"/>
                                         <userDefinedRuntimeAttributes>
@@ -778,7 +781,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xz-Ab-H0G" customClass="HSbutton" customModule="Shops" customModuleProvider="target">
                                         <rect key="frame" x="103.66666666666669" y="528" width="207" height="45"/>
-                                        <color key="backgroundColor" red="0.32843899729999998" green="0.78237261029461924" blue="0.19959784920421331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.0019034935394302011" green="0.5013728141784668" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="7O4-3Y-hHQ"/>
                                         </constraints>
@@ -806,7 +809,8 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="7sF-cZ-dyw"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="20"/>
+                                        <color key="textColor" red="0.001903493539" green="0.50137281420000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
