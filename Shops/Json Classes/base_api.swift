@@ -16,15 +16,15 @@ class base_api {
         var jsondata : [String : Any]
         switch type {
         case base_api().search_by_category():
-            jsondata = [ "latitude": latitude , "longitude" : longitude , "categoryName" : searchname , "distance" : distance  ,  "isNearYou": 1]
+            jsondata = [ "latitude": latitude , "longitude" : longitude , "categoryName" : searchname , "distance" : distance  ,  "isNearYou": 0]
             url = URL(string: "\(base_url)/Shops/shops/categories/search_by_category")!
             break
         case base_api().search_by_intelligentsearch():
-            jsondata = [ "latitude": latitude , "longitude" : longitude ,"description": searchname , "distance" : distance  ,  "isNearYou": 1]
+            jsondata = [ "latitude": latitude , "longitude" : longitude ,"description": searchname , "distance" : distance  ,  "isNearYou": 0]
             url = URL(string: "\(base_url)/Shops/shops/products/search_by_description")!
             break
         case base_api().search_by_product():
-            jsondata = ["latitude": latitude , "longitude" : longitude , "productName":searchname , "distance" : distance  ,  "isNearYou": 1]
+            jsondata = ["latitude": latitude , "longitude" : longitude , "productName":searchname , "distance" : distance  ,  "isNearYou": 0]
             url = URL(string: "\(base_url)/Shops/shops/products/search_by_product")!
             //url = URL(string:"http://192.168.17.1/data.php")!
             break
