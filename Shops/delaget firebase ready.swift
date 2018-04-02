@@ -87,7 +87,7 @@
 //    
 //    // Firebase notification received
 //    @available(iOS 10.0, *)
-//    func userNotificationCenter(_ center: UNUserNotificationCenter,  willPresent notification: UNNotification, withCompletionHandler   completionHandler: @escaping (_ options:   UNNotificationPresentationOptions) -> Void) {
+//    func userNotificationCenter(_ center: UNUserNotificationCente  r,  willPresent notification: UNNotification, withCompletionHandler   completionHandler: @escaping (_ options:   UNNotificationPresentationOptions) -> Void) {
 //        
 //        // custom code to handle push while app is in the foreground
 //        print("Handle push from foreground\(notification.request.content.userInfo)")
