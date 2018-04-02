@@ -63,7 +63,8 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
             type = base_api().search_by_product()
             self.searchtext.imag = nil
             self.searchtext.overlaybutton.removeTarget(self, action: #selector(self.categoryclicked), for: .touchUpInside)
-            self.searchtext.placeholder = "Name Of Product"
+            //neww commit hasan
+            self.searchtext.placeholder = "Name Oof Product"
         }
             //search by description
         else if sender.selectedSegmentIndex == 1{
