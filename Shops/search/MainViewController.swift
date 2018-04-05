@@ -16,6 +16,7 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
     var shops = [userinfo]()
     var load = MBProgressHUD()
     
+    var isNearYou : Int = 0 //replace with segment value
     
     // did load function
     override func viewDidLoad() {
@@ -196,7 +197,7 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
     func search (type : String , latitude : Double  , longitude : Double ,  searchname : String , distance : Int ){
         
         let decoder = JSONDecoder()
-        let request = base_api().search_request(type: type, latitude: latitude, longitude: longitude, searchname: searchname, distance: distance)
+        let request = base_api().search_request(type: type, latitude: latitude, longitude: longitude, searchname: searchname, distance: distance, isNearYou: isNearYou)
         
         // start Session
         URLSession.shared.dataTask(with: request) { (data, urlresponse, error) in

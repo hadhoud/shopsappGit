@@ -43,8 +43,8 @@ class product: Codable {
     let title : String?
     let logo : String?
     let description : String?
-    let price : Int?
-    init(id : Int , title : String , logo :String , description : String , price : Int) {
+    let price : String?
+    init(id : Int , title : String , logo :String , description : String , price : String) {
         self.id = id
         self.title = title
         self.description = description

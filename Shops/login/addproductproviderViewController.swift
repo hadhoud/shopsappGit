@@ -179,7 +179,7 @@ class addproductproviderViewController: UIViewController , UITextFieldDelegate ,
             enabletext()
             imagechanged = true
             editproductbool = true
-            self.productprice.text = String(self.productoshow!.price ?? 0)
+            self.productprice.text = String(self.productoshow!.price ?? "0")
         }
     }
     
@@ -225,7 +225,7 @@ class addproductproviderViewController: UIViewController , UITextFieldDelegate ,
         self.productlogo.getlogofromurl(productoshow!.logo ?? "")
         self.categorytext.text = self.categoryname
         self.producttitle.text = self.productoshow!.title ?? ""
-        self.productprice.text = ("\(self.productoshow!.price ?? 0) $")
+        self.productprice.text = ("\(self.productoshow!.price ?? "0" ) $")
         self.productdescription.showtext(text: self.productoshow!.description ?? "")
         
         

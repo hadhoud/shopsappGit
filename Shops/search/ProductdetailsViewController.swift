@@ -20,7 +20,7 @@ class ProductdetailsViewController: UIViewController {
 
         self.shopinfoproductdetailsimage.getlogofromurl(shopinfoproduct?.logo ?? "")
         self.shopiinfoproductdetailstitle.text = shopinfoproduct!.title ?? ""
-        self.shopinfoproductdetailsprice.text = ("\(shopinfoproduct!.price ?? 0) $")
+        self.shopinfoproductdetailsprice.text = ("\(shopinfoproduct!.price ?? "0") $")
         self.shopinfoproductdetailsdescription.text = shopinfoproduct!.description ?? ""
     }
 }
