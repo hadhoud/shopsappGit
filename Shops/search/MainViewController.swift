@@ -330,7 +330,7 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
        var image_array = [UIImage]()
  
     var adTimer :Timer!
-    var v2 : UIView!
+    var v2 : UIImageView!
     var ad_array = [ads]()
 var ad_time = 1// default time
     @objc func get_all_Ads (){
@@ -380,11 +380,14 @@ var ad_time = 1// default time
     func display_Ads(){
        
         let window = UIApplication.shared.keyWindow!
-        v2 = UIView(frame: CGRect(x: 0, y: 690, width:  window.frame.width, height: 40))
+     //   v2 = UIView(frame: CGRect(x: 0, y: 690, width:  window.frame.width, height: 40))
+       v2 = UIImageView(frame: CGRect(x: 0, y: 680, width:  window.frame.width, height: 50))
         //v2.backgroundColor = UIColor.gray
-       v2.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "Logo"))
+       //v2.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "Logo"))
+      v2.image = #imageLiteral(resourceName: "Logo")
         window.addSubview(v2)
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(Ad_click(sender:)))
+        v2.isUserInteractionEnabled = true
         v2.addGestureRecognizer(gesture)
           get_ads_image()
   
@@ -415,9 +418,10 @@ var ad_time = 1// default time
         if (index >= image_array.count){
             index = 0
         }
-       
-        v2.backgroundColor = UIColor(patternImage: image_array[index])
-        ad_time = ad_array[index].timer ?? 3
+     
+        //v2.backgroundColor = UIColor(patternImage: image_array[index])
+        v2.image = image_array[index]
+        //ad_time = ad_array[index].timer ?? 3
        
           index = index + 1
     }
@@ -437,7 +441,8 @@ var ad_time = 1// default time
             //check cache for image first
             if let cachedImage = imageCache.object(forKey: x.image! as NSString) as? UIImage {
                 //self.image = cachedImage
-                self.v2.backgroundColor = UIColor(patternImage: cachedImage)
+              //  self.v2.backgroundColor = UIColor(patternImage: cachedImage)
+                self.v2.image = cachedImage
                 self.image_array.append(cachedImage)
                 return
             }
@@ -450,7 +455,8 @@ var ad_time = 1// default time
                     DispatchQueue.main.async {
                         if let downloadedImage = UIImage(data: data) {
                             imageCache.setObject(downloadedImage, forKey: x.image! as NSString)
-                            self.v2.backgroundColor = UIColor(patternImage: downloadedImage)
+                           self.v2.image = downloadedImage
+                            // self.v2.backgroundColor = UIColor(patternImage: downloadedImage)
                       self.image_array.append(downloadedImage)
                        self.run_Ads()
                         }
