@@ -421,7 +421,7 @@ var ad_time = 1// default time
      
         //v2.backgroundColor = UIColor(patternImage: image_array[index])
         v2.image = image_array[index]
-        //ad_time = ad_array[index].timer ?? 3
+        ad_time = ad_array[index].timer ?? 2
        
           index = index + 1
     }
