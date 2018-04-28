@@ -155,6 +155,15 @@ class base_api {
        
         return request
     }
+    func all_ads_request() -> URLRequest {
+        
+        let url = URL(string :"\(base_url)/Shops/shops/advertisements/all")
+        
+        var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 15)
+        request.httpMethod = "GET"
+        
+        return request
+    }
     func get_password(email: String) -> URLRequest {
         let  jsondata = ["email": email]
         let url = URL(string :"\(base_url)/Shops/shops/user/forgot_password")

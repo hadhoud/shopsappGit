@@ -15,9 +15,8 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
     var longitude : Double = 0.0
     var shops = [userinfo]()
     var load = MBProgressHUD()
-    
     var isNearYou : Int = 0 //replace with segment value
-    
+
     // did load function
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +36,12 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
        // self.segment.layer.borderColor = UIColor.init(red: 84/255, green: 47/255, blue: 82/255, alpha: 1.0).cgColor
       //  self.segment.layer.cornerRadius = 5
         //self.segment.layer.masksToBounds = true
+      
+        
+        get_all_Ads ()
+       
+   //  display_Ads()
+        
     }
     
     
@@ -302,9 +307,6 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
         self.locationManager.stopUpdatingLocation()
     }
     
-    
-    
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .restricted:
@@ -323,6 +325,147 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
         }
     }
     
+    
+    /// new stuff   // timer and ADs
+       var image_array = [UIImage]()
+ 
+    var adTimer :Timer!
+    var v2 : UIView!
+    var ad_array = [ads]()
+var ad_time = 1// default time
+    @objc func get_all_Ads (){
+        
+        let request = base_api().all_ads_request()
+        
+        URLSession.shared.dataTask(with: request) { (data, urlresponse, error) in
+            let decoder = JSONDecoder()
+            guard let data = data , error == nil, urlresponse != nil else {
+                print ("can not download check internet")
+                DispatchQueue.main.async {
+                
+                }
+                return
+            }
+             print ("downloaded")
+            do
+            { print(data)
+                let downloads = try decoder.decode(Res_data.self, from: data)
+                
+                if downloads.status == "OK" {
+                    if downloads.advertisements != nil {
+                      print (downloads.advertisements!)
+                        DispatchQueue.main.async {
+                            self.ad_array = downloads.advertisements!
+                            print ("Successfully loaded")
+                       self.display_Ads()
+                        }
+                    }
+                }
+                else{
+                    DispatchQueue.main.async {
+                        
+                    }
+                    print ( "status: "  + downloads.status!)
+                    
+                }
+            }catch {
+                DispatchQueue.main.async {
+                }
+                print ("json decoder error ")
+            }
+            }.resume()
+        
+    }
+ 
+    func display_Ads(){
+       
+        let window = UIApplication.shared.keyWindow!
+        v2 = UIView(frame: CGRect(x: 0, y: 690, width:  window.frame.width, height: 40))
+        //v2.backgroundColor = UIColor.gray
+       v2.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "Logo"))
+        window.addSubview(v2)
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector(Ad_click(sender:)))
+        v2.addGestureRecognizer(gesture)
+          get_ads_image()
+  
+    }
+    @objc func Ad_click(sender : UITapGestureRecognizer) {
+       
+        print ("Ad Clicked")
+  
+        //this removes Ads
+      // remove_Ads()
+       
+    }
+    
+    func remove_Ads (){
+         adTimer.invalidate()
+         v2.removeFromSuperview()
+    }
+  var index = 0
+    @objc func run_Ads (){
+      
+      
+        print ("new Ad displayed" )
+        if (adTimer != nil){
+            adTimer.invalidate()
+            
+        }
+        adTimer  = Timer.scheduledTimer(timeInterval: TimeInterval(ad_time), target: self, selector: #selector(run_Ads), userInfo: nil, repeats: true)
+        if (index >= image_array.count){
+            index = 0
+        }
+       
+        v2.backgroundColor = UIColor(patternImage: image_array[index])
+        ad_time = ad_array[index].timer ?? 3
+       
+          index = index + 1
+    }
+ 
+    
+    func get_ads_image(){
+        image_array.removeAll()
+        DispatchQueue.global(qos: .userInitiated).async {
+         var index = 0
+        
+        print ("printing images")
+               
+        for x in self.ad_array {
+            
+            print (x.image ?? "bad photo")
+            
+            //check cache for image first
+            if let cachedImage = imageCache.object(forKey: x.image! as NSString) as? UIImage {
+                //self.image = cachedImage
+                self.v2.backgroundColor = UIColor(patternImage: cachedImage)
+                self.image_array.append(cachedImage)
+                return
+            }
+            
+            guard let imageurl = URL(string: x.image!) else { return }
+
+            DispatchQueue.global(qos: .userInitiated).async {
+                let data = try? Data(contentsOf: imageurl)
+                if let data = data {
+                    DispatchQueue.main.async {
+                        if let downloadedImage = UIImage(data: data) {
+                            imageCache.setObject(downloadedImage, forKey: x.image! as NSString)
+                            self.v2.backgroundColor = UIColor(patternImage: downloadedImage)
+                      self.image_array.append(downloadedImage)
+                       self.run_Ads()
+                        }
+                    }
+                }
+                
+                }
+              index = index + 1
+                }
+             print ("index = \(index)")
+            
+        }
+       
+    }
+   
 }
 
 

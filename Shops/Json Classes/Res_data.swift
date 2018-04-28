@@ -9,17 +9,56 @@ class Res_data : Codable {
     let auth_token : String?
     let user_infos : [userinfo]?
     let shops : [userinfo]?
+   let advertisements : [ads]?
     let categories : [category]?
     
-    init(status: String, message : String ,auth_token : String ,user_infos : [userinfo], shops : [userinfo],categories : [category]) {
+    init(status: String, message : String ,auth_token : String ,user_infos : [userinfo], shops : [userinfo],advertisements : [ads],categories : [category]) {
         self.status = status
         self.message = message
         self.auth_token = auth_token
         self.user_infos = user_infos
         self.shops = shops
+        self.advertisements = advertisements
         self.categories = categories
     }
     
+}
+
+
+class ads :Codable {
+    let id :Int?
+    let description : String?
+    let name : String?
+    let image : String?
+    let link : String?
+    let sequence : Int?
+    let timer : Int?
+    let startDate : String?
+    let endDate : String?
+    let modiefiedDate : String?
+    let user : user?
+    init(id : Int , description:String ,name : String ,image : String,link : String,sequence : Int,timer : Int,startDate : String,endDate : String,modiefiedDate : String,user : user) {
+     self.id = id
+        self.description = description
+        self.name = name
+        self.image = image
+        self.link = link
+        self.sequence = sequence
+        self.timer = timer
+        self.startDate = startDate
+        self.endDate = endDate
+        self.modiefiedDate = modiefiedDate
+        self.user = user
+    }
+    
+}
+class user : Codable {
+    let id: Int?
+    let username : String?
+    init(id : Int , username : String) {
+       self.id = id
+        self.username = username
+    }
 }
 class category: Codable {
     
@@ -205,6 +244,7 @@ class productme {
             self.categoryName = categoryName
             self.auth_token = auth_token
         }
+        
     }
 
 
