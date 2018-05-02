@@ -16,15 +16,6 @@ class Global {
 class MainViewController: UIViewController , UITextFieldDelegate, CLLocationManagerDelegate {
     
     @IBOutlet var isnear_switch: UISwitch!
-    @IBAction func searchEverywhere(_ sender: Any) {
-        if isnear_switch.isOn{
-            sliderdistance.isEnabled = false
-            isNearYou = 0
-        }else{
-            sliderdistance.isEnabled = true
-            isNearYou = 1
-        }
-    }
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var searchtext: hhstextfield!
     @IBOutlet weak var distancetext: UITextField!
@@ -64,7 +55,15 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
         
     }
     
-    
+    @IBAction func searchEverywhere(_ sender: Any) {
+        if isnear_switch.isOn{
+            sliderdistance.isEnabled = false
+            isNearYou = 0
+        }else{
+            sliderdistance.isEnabled = true
+            isNearYou = 1
+        }
+    }
     @IBAction func sliderchangevalue(_ sender: UISlider) {
         if sender.value >= 1000 {
             // get value in Kilometer
@@ -353,13 +352,16 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
     
     /// new stuff   // timer and ADs
     //********************************************************************************************
-      var v2 : UIImageView!
+    var v2 : UIImageView!
     var image_array = [UIImage]()
     var data_array = [ads]()
-  var index = -1
+    var index = -1
     var adTimer = global.adTimer
     var ad_array = [ads]()
-var ad_time = 1// default time
+    var ad_time = 1// default time
+    var button = UIButton()
+    var sendedshopinfo : [userinfo]?
+    var webV = UIWebView()
     @objc func get_all_Ads (){
         
         let request = base_api().all_ads_request()
@@ -407,15 +409,14 @@ var ad_time = 1// default time
             }.resume()
         
     }
- 
     func display_Ads(){
         let window = UIApplication.shared.keyWindow!
        
-        global.v2 = UIImageView(frame: CGRect(x: 0, y: window.frame.height * 0.84, width:  window.frame.width, height: 50))
+        global.v2 = UIImageView(frame: CGRect(x: 0, y: window.frame.height * 0.82, width:  window.frame.width, height: 50))
         v2 = global.v2
         v2.image = #imageLiteral(resourceName: "Logo")
-        window.addSubview(v2!)
-   
+        //window.addSubview(v2!)
+   self.view.superview?.superview?.addSubview(v2)
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(Ad_click(sender:)))
         v2?.isUserInteractionEnabled = true
         v2?.addGestureRecognizer(gesture)
@@ -458,15 +459,11 @@ var ad_time = 1// default time
         }
       
     }
-    var button = UIButton()
-    var webV = UIWebView()
-
     @objc func buttonAction(sender: UIButton!) {
     print("Button tapped")
         button.removeFromSuperview()
         webV.removeFromSuperview()
 }
-
     @objc func run_Ads (){
          index = index + 1
         if (index >= image_array.count){
@@ -487,8 +484,6 @@ var ad_time = 1// default time
         
         
     }
- 
-    
     func get_ads_image(){
         image_array.removeAll()
         DispatchQueue.global(qos: .userInitiated).async {
@@ -560,7 +555,8 @@ var ad_time = 1// default time
                             self.sendedshopinfo = downloads.user
                        print(" ads OK")
                             
-                           self.performSegue(withIdentifier: "toshopfromads", sender: self )
+                          self.performSegue(withIdentifier: "toshopfromads", sender: self )
+                          
                         }else{print ("ads not ok")}
                     }
                 }
@@ -577,10 +573,6 @@ var ad_time = 1// default time
             }.resume()
         
     }
-    
-    //************************************** end of get class
-    var sendedshopinfo : [userinfo]?
-    
     func loading_show(){
         load = MBProgressHUD.showAdded(to: self.view, animated: true)
         load.mode = .indeterminate

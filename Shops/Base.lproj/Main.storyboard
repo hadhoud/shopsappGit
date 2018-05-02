@@ -738,7 +738,7 @@
                                             <constraint firstAttribute="height" constant="35" id="7WI-w1-dKm"/>
                                         </constraints>
                                         <color key="maximumTrackTintColor" red="0.001903493539" green="0.50137281420000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="thumbTintColor" red="0.99910277130000003" green="0.14712172749999999" blue="0.0014433269389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="thumbTintColor" red="0.14935125154209372" green="0.99910277130000003" blue="0.081251519148457546" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="sliderchangevalue:" destination="h7e-TR-Hrd" eventType="valueChanged" id="pHq-3P-fRb"/>
                                         </connections>
@@ -780,7 +780,7 @@
                                         </variation>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xz-Ab-H0G" customClass="HSbutton" customModule="Shops" customModuleProvider="target">
-                                        <rect key="frame" x="103.66666666666669" y="528" width="207" height="45"/>
+                                        <rect key="frame" x="104" y="478" width="207" height="45"/>
                                         <color key="backgroundColor" red="0.0019034935394302011" green="0.5013728141784668" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="7O4-3Y-hHQ"/>
@@ -816,27 +816,43 @@
                                             <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
                                         </variation>
                                     </textField>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7lc-qn-a1v">
+                                        <rect key="frame" x="258.66666666666669" y="103" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="searchEverywhere:" destination="h7e-TR-Hrd" eventType="valueChanged" id="ba1-Xh-1vh"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search EveryWhere?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1W-x3-ZEz">
+                                        <rect key="frame" x="49.999999999999986" y="103" width="158.66666666666663" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="YPX-L3-PAv" firstAttribute="top" secondItem="mxd-hz-bLz" secondAttribute="bottom" constant="72" id="5Nf-mY-thD"/>
                                     <constraint firstAttribute="trailing" secondItem="cQ0-ZY-0qo" secondAttribute="trailing" constant="12" id="6YC-VX-Ma3"/>
+                                    <constraint firstItem="7lc-qn-a1v" firstAttribute="leading" secondItem="Q1W-x3-ZEz" secondAttribute="trailing" constant="50" id="7up-pZ-hEE"/>
                                     <constraint firstItem="YPX-L3-PAv" firstAttribute="leading" secondItem="nRP-JM-mTh" secondAttribute="leading" constant="12" id="8GK-Gk-W3D"/>
                                     <constraint firstItem="4xz-Ab-H0G" firstAttribute="width" secondItem="nRP-JM-mTh" secondAttribute="width" multiplier="1:2" id="8Tt-3C-fgo"/>
                                     <constraint firstItem="mxd-hz-bLz" firstAttribute="top" secondItem="nRP-JM-mTh" secondAttribute="top" constant="40" id="AH0-qV-G4t">
                                         <variation key="heightClass=compact-widthClass=compact" constant="30"/>
                                     </constraint>
+                                    <constraint firstItem="Q1W-x3-ZEz" firstAttribute="top" secondItem="mxd-hz-bLz" secondAttribute="bottom" constant="30" id="GZx-ny-fWD"/>
+                                    <constraint firstItem="7lc-qn-a1v" firstAttribute="top" secondItem="mxd-hz-bLz" secondAttribute="bottom" constant="30" id="KsL-Uy-cIz"/>
                                     <constraint firstItem="N8K-c3-BcZ" firstAttribute="top" secondItem="YPX-L3-PAv" secondAttribute="bottom" constant="50" id="MBr-k4-nFt">
                                         <variation key="heightClass=compact-widthClass=compact" constant="30"/>
                                     </constraint>
                                     <constraint firstItem="cQ0-ZY-0qo" firstAttribute="width" secondItem="nRP-JM-mTh" secondAttribute="width" multiplier="1:2" constant="-24" id="OW9-PL-65d"/>
                                     <constraint firstItem="N8K-c3-BcZ" firstAttribute="width" secondItem="nRP-JM-mTh" secondAttribute="width" multiplier="1:2" constant="-10" id="RAW-ER-0DR"/>
                                     <constraint firstItem="4xz-Ab-H0G" firstAttribute="centerX" secondItem="nRP-JM-mTh" secondAttribute="centerX" id="RPL-BJ-oEQ"/>
+                                    <constraint firstItem="Q1W-x3-ZEz" firstAttribute="leading" secondItem="nRP-JM-mTh" secondAttribute="leading" constant="50" id="b7s-LC-fgN"/>
                                     <constraint firstAttribute="trailing" secondItem="YPX-L3-PAv" secondAttribute="trailing" constant="12" id="cWn-wJ-1Bl"/>
                                     <constraint firstAttribute="trailing" secondItem="mxd-hz-bLz" secondAttribute="trailing" constant="12" id="fEI-7L-Lgh">
                                         <variation key="heightClass=compact-widthClass=compact" constant="70"/>
                                     </constraint>
-                                    <constraint firstAttribute="bottom" secondItem="4xz-Ab-H0G" secondAttribute="bottom" constant="50" id="gzM-kq-WDA"/>
+                                    <constraint firstAttribute="bottom" secondItem="4xz-Ab-H0G" secondAttribute="bottom" constant="100" id="gzM-kq-WDA"/>
                                     <constraint firstItem="N8K-c3-BcZ" firstAttribute="leading" secondItem="nRP-JM-mTh" secondAttribute="leading" constant="12" id="pIh-0q-7L0"/>
                                     <constraint firstItem="mxd-hz-bLz" firstAttribute="leading" secondItem="nRP-JM-mTh" secondAttribute="leading" constant="12" id="r7A-qV-1Qf">
                                         <variation key="heightClass=compact-widthClass=compact" constant="70"/>
@@ -866,11 +882,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="distancetext" destination="cQ0-ZY-0qo" id="ajc-n8-F2h"/>
+                        <outlet property="isnear_switch" destination="7lc-qn-a1v" id="pre-8o-N0Y"/>
                         <outlet property="searchtext" destination="YPX-L3-PAv" id="XgZ-7M-Fdx"/>
                         <outlet property="segment" destination="mxd-hz-bLz" id="UDA-h4-BRj"/>
                         <outlet property="sliderdistance" destination="N8K-c3-BcZ" id="SYA-dd-zxt"/>
                         <segue destination="Kl1-Pd-3kP" kind="show" identifier="toshoplist" id="ulM-8b-iER"/>
                         <segue destination="aa2-p6-Htu" kind="show" identifier="tocategoryfromsearch" id="ef4-5t-NTN"/>
+                        <segue destination="BAJ-nv-ZYg" kind="show" identifier="toshopfromads" id="E8l-F8-6fb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mt4-uR-Iis" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -880,7 +898,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1008.8" y="-323.38830584707648"/>
+            <point key="canvasLocation" x="1008.6956521739131" y="-323.64130434782612"/>
         </scene>
         <!--Categories-->
         <scene sceneID="PNc-as-O9G">
@@ -3737,8 +3755,9 @@
         <segue reference="pvM-hx-4Q5"/>
         <segue reference="AIM-yq-pjf"/>
         <segue reference="mRa-if-tYZ"/>
-        <segue reference="7EG-4j-I24"/>
-        <segue reference="grT-nu-D47"/>
+        <segue reference="ef4-5t-NTN"/>
+        <segue reference="ghY-xN-jQA"/>
+        <segue reference="E8l-F8-6fb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
 </document>

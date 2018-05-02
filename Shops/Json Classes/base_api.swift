@@ -124,6 +124,18 @@ class base_api {
         request.httpBody = json!
         return request
     }
+    func ads_user_info(userName : String )->URLRequest{
+        let  jsondata = ["userName":userName] as [String : Any]
+        
+        let url = URL(string :"\(base_url)/Shops/shops/user/get_user_by_name")
+        let json = try? JSONSerialization.data(withJSONObject: jsondata , options: .prettyPrinted)
+        // printstring(data: json!)
+        var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 20)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = json!
+        return request
+    }
     func valid_username_request(username: String) -> URLRequest {
         let  jsondata = ["userName":username]
         let url = URL(string :"\(base_url)/Shops/shops/user/username_is_valid")
@@ -299,7 +311,7 @@ extension UITableViewController {
         let sizeOfString = (message as NSString).size(withAttributes: fontAttributes)
         
         
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - (sizeOfString.width + 20 )/2 , y:self.view.frame.size.height - 150 , width: sizeOfString.width + 20 , height: 30))
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - (sizeOfString.width + 20 )/2 , y:self.view.frame.size.height - 170 , width: sizeOfString.width + 20 , height: 30))
         toastLabel.text = message
         toastLabel.backgroundColor = UIColor.black
         toastLabel.textColor = UIColor.white

@@ -9,14 +9,16 @@ class Res_data : Codable {
     let auth_token : String?
     let user_infos : [userinfo]?
     let shops : [userinfo]?
+    let user : [userinfo]?
    let advertisements : [ads]?
     let categories : [category]?
     
-    init(status: String, message : String ,auth_token : String ,user_infos : [userinfo], shops : [userinfo],advertisements : [ads],categories : [category]) {
+    init(status: String, message : String ,auth_token : String ,user_infos : [userinfo],user : [userinfo], shops : [userinfo],advertisements : [ads],categories : [category]) {
         self.status = status
         self.message = message
         self.auth_token = auth_token
         self.user_infos = user_infos
+        self.user = user_infos
         self.shops = shops
         self.advertisements = advertisements
         self.categories = categories
@@ -137,6 +139,7 @@ class userinfo : Codable {
         self.lstCategories = lstCategories
     }
 }
+
 ///*************************  registration classes*******************
 
 class registration: Codable {
