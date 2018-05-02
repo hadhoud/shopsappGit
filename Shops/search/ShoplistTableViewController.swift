@@ -1,5 +1,6 @@
 
 import UIKit
+
 class ShoplistTablecell: UITableViewCell {
     
     @IBOutlet weak var shoplistimage: UIImageView!
@@ -24,16 +25,11 @@ class ShoplistTableViewController: UITableViewController {
     var sendedshopinfo : [userinfo]?
     
     var myuserinfoases: [userinfo]? = []
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      // global.v2.removeFromSuperview()// use this anywhere to hide ads
     }
-    
-    // deleted in json
-    
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -55,13 +51,7 @@ class ShoplistTableViewController: UITableViewController {
         cell.shoplistimage.getlogofromurl(myuserinfoases![indexPath.row].logo ?? "")
         
         hightforrow = cell.getheight() + 20
-        
-       // cell.setcornerforview()
-//        let selectionview = UIView()
-//        selectionview.backgroundColor = UIColor.init(red: 84/255, green: 47/255, blue: 82/255, alpha: 1.0)
-//        selectionview.layer.cornerRadius = 20
-//        selectionview.layer.masksToBounds = true
-//        cell.selectedBackgroundView = selectionview
+
         cell.selectionStyle = .none
         cell.selectedBackgroundView = nil
         return cell

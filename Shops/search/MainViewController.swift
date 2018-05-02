@@ -2,8 +2,29 @@
 
 import UIKit
 import CoreLocation
+let global : Global = Global()
+// Create the class with all the variables
+class Global {
+    var v2 : UIImageView!
+    var adTimer :Timer!
+    
+    func remove_Ads (){
+        adTimer?.invalidate()
+        v2?.removeFromSuperview()
+    }
+}
 class MainViewController: UIViewController , UITextFieldDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet var isnear_switch: UISwitch!
+    @IBAction func searchEverywhere(_ sender: Any) {
+        if isnear_switch.isOn{
+            sliderdistance.isEnabled = false
+            isNearYou = 0
+        }else{
+            sliderdistance.isEnabled = true
+            isNearYou = 1
+        }
+    }
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var searchtext: hhstextfield!
     @IBOutlet weak var distancetext: UITextField!
@@ -16,15 +37,14 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
     var shops = [userinfo]()
     var load = MBProgressHUD()
     var isNearYou : Int = 0 //replace with segment value
-
+    
+ 
     // did load function
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        addobservers()
+            addobservers()
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestAlwaysAuthorization()
-        
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         self.searchtext.delegate = self
@@ -277,6 +297,11 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
                 
                 destination.myuserinfoases = self.shops
             }
+        case "toshopfromads" :
+            if let destination = segue.destination as? ShopinfoViewController {
+                
+                destination.shopinfo = sendedshopinfo
+            }
         default:
             break
         }
@@ -327,10 +352,12 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
     
     
     /// new stuff   // timer and ADs
-       var image_array = [UIImage]()
- 
-    var adTimer :Timer!
-    var v2 : UIImageView!
+    //********************************************************************************************
+      var v2 : UIImageView!
+    var image_array = [UIImage]()
+    var data_array = [ads]()
+  var index = -1
+    var adTimer = global.adTimer
     var ad_array = [ads]()
 var ad_time = 1// default time
     @objc func get_all_Ads (){
@@ -341,6 +368,10 @@ var ad_time = 1// default time
             let decoder = JSONDecoder()
             guard let data = data , error == nil, urlresponse != nil else {
                 print ("can not download check internet")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+                    self.get_all_Ads()
+                })
+               
                 DispatchQueue.main.async {
                 
                 }
@@ -378,52 +409,83 @@ var ad_time = 1// default time
     }
  
     func display_Ads(){
-       
         let window = UIApplication.shared.keyWindow!
-     //   v2 = UIView(frame: CGRect(x: 0, y: 690, width:  window.frame.width, height: 40))
-       v2 = UIImageView(frame: CGRect(x: 0, y: 680, width:  window.frame.width, height: 50))
-        //v2.backgroundColor = UIColor.gray
-       //v2.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "Logo"))
-      v2.image = #imageLiteral(resourceName: "Logo")
-        window.addSubview(v2)
+       
+        global.v2 = UIImageView(frame: CGRect(x: 0, y: window.frame.height * 0.84, width:  window.frame.width, height: 50))
+        v2 = global.v2
+        v2.image = #imageLiteral(resourceName: "Logo")
+        window.addSubview(v2!)
+   
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(Ad_click(sender:)))
-        v2.isUserInteractionEnabled = true
-        v2.addGestureRecognizer(gesture)
+        v2?.isUserInteractionEnabled = true
+        v2?.addGestureRecognizer(gesture)
           get_ads_image()
   
     }
     @objc func Ad_click(sender : UITapGestureRecognizer) {
-       
+        let window = UIApplication.shared.keyWindow!
+        
         print ("Ad Clicked")
-  
-        //this removes Ads
-      // remove_Ads()
-       
-    }
-    
-    func remove_Ads (){
-         adTimer.invalidate()
-         v2.removeFromSuperview()
-    }
-  var index = 0
-    @objc func run_Ads (){
-      
-      
-        print ("new Ad displayed" )
-        if (adTimer != nil){
-            adTimer.invalidate()
-            
+        print(data_array[index].image as Any)
+        if(data_array[index].user?.username != nil){
+            getshopinfo(userName: (data_array[index].user?.username)!)}
+        else {
+            if data_array[index].link != nil {
+                
+                print(data_array[index].link ?? "")
+                if let url = URL(string: data_array[index].link ?? "") {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url, options: [:])
+                       
+                       
+                        
+                    } else {
+                        webV.frame  = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
+                        webV.loadRequest(NSURLRequest(url: NSURL(string: data_array[index].link! )! as URL) as URLRequest)
+                        
+                        window.addSubview(webV)
+                        button = UIButton(frame: CGRect(x: window.frame.width - 150, y: 50, width:150 ,height: 50))
+                        button.backgroundColor = .gray
+                        button.setTitle("Loading...[X] ", for: .normal)
+                        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+                        
+                        webV.addSubview(button)
+                        
+                        // Fallback on earlier versions
+                    }
+                }
+            }
         }
-        adTimer  = Timer.scheduledTimer(timeInterval: TimeInterval(ad_time), target: self, selector: #selector(run_Ads), userInfo: nil, repeats: true)
+      
+    }
+    var button = UIButton()
+    var webV = UIWebView()
+
+    @objc func buttonAction(sender: UIButton!) {
+    print("Button tapped")
+        button.removeFromSuperview()
+        webV.removeFromSuperview()
+}
+
+    @objc func run_Ads (){
+         index = index + 1
         if (index >= image_array.count){
             index = 0
         }
+      
+        print ("new Ad displayed" )
+        if (adTimer != nil){
+            adTimer?.invalidate()
+            
+        }
+        adTimer  = Timer.scheduledTimer(timeInterval: TimeInterval(ad_time), target: self, selector: #selector(run_Ads), userInfo: nil, repeats: true)
+       
      
         //v2.backgroundColor = UIColor(patternImage: image_array[index])
-        v2.image = image_array[index]
-        ad_time = ad_array[index].timer ?? 2
-       
-          index = index + 1
+        v2?.image = image_array[index]
+        ad_time = data_array[index].timer ?? 2
+        
+        
     }
  
     
@@ -437,15 +499,9 @@ var ad_time = 1// default time
         for x in self.ad_array {
             
             print (x.image ?? "bad photo")
+             print ("index = \(index)")
             
-            //check cache for image first
-            if let cachedImage = imageCache.object(forKey: x.image! as NSString) as? UIImage {
-                //self.image = cachedImage
-              //  self.v2.backgroundColor = UIColor(patternImage: cachedImage)
-                self.v2.image = cachedImage
-                self.image_array.append(cachedImage)
-                return
-            }
+
             
             guard let imageurl = URL(string: x.image!) else { return }
 
@@ -455,9 +511,9 @@ var ad_time = 1// default time
                     DispatchQueue.main.async {
                         if let downloadedImage = UIImage(data: data) {
                             imageCache.setObject(downloadedImage, forKey: x.image! as NSString)
-                           self.v2.image = downloadedImage
-                            // self.v2.backgroundColor = UIColor(patternImage: downloadedImage)
-                      self.image_array.append(downloadedImage)
+                           self.v2?.image = downloadedImage
+                     self.image_array.append(downloadedImage)
+                            self.data_array.append(x)
                        self.run_Ads()
                         }
                     }
@@ -466,10 +522,79 @@ var ad_time = 1// default time
                 }
               index = index + 1
                 }
-             print ("index = \(index)")
+            
             
         }
        
+    }
+    func getshopinfo (userName : String ){
+        let request = base_api().ads_user_info(userName: userName)
+        self.loading_show()
+        URLSession.shared.dataTask(with: request) { (data, urlresponse, error) in
+            let decoder = JSONDecoder()
+            
+            
+            guard let data = data , error == nil, urlresponse != nil else {
+                // print ("can not download check internet")
+                DispatchQueue.main.async {
+                    
+                    self.loading_hide()
+                    self.showToast(message: "No Internet")}
+                return
+                
+                
+            }
+            base_api().printstring(data: data)
+            // print ("downloaded")
+            do
+            {
+                self.loading_hide()
+                print(data.description)
+                let downloads = try decoder.decode(Res_data.self, from: data)
+                
+                if downloads.status == "OK" {
+                    
+                    DispatchQueue.main.async {
+                        
+                        if downloads.user != nil {
+                            self.sendedshopinfo = downloads.user
+                       print(" ads OK")
+                            
+                           self.performSegue(withIdentifier: "toshopfromads", sender: self )
+                        }else{print ("ads not ok")}
+                    }
+                }
+                    
+                else{
+                    
+                    print ( "error ")
+                    
+                    
+                }
+            }catch {
+                print ("json decoder error ")}
+            
+            }.resume()
+        
+    }
+    
+    //************************************** end of get class
+    var sendedshopinfo : [userinfo]?
+    
+    func loading_show(){
+        load = MBProgressHUD.showAdded(to: self.view, animated: true)
+        load.mode = .indeterminate
+        load.label.text = "loading"
+        self.view.isUserInteractionEnabled = false
+        self.navigationItem.hidesBackButton = true
+    }
+    func loading_hide(){
+        DispatchQueue.main.async {
+            self.load.hide(animated: true)
+            self.view.isUserInteractionEnabled = true
+            self.navigationItem.hidesBackButton = false
+            
+        }
     }
    
 }

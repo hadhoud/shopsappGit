@@ -257,8 +257,8 @@
 				842BE1481FC0BE1200E83F59 /* hhsimage.swift */,
 				84372CB01FCA0844006D53B3 /* hhstextview.swift */,
 				84AA32571FEC17480027BC31 /* HSbutton.swift */,
-				84FCA6E51FD352010052F23A /* HScardview.swift */,
 				847D7C411FDB34C60066DC0A /* HScheckbox.swift */,
+				84FCA6E51FD352010052F23A /* HScardview.swift */,
 			);
 			path = "Json Classes";
 			sourceTree = "<group>";

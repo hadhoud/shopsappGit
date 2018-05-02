@@ -14,6 +14,8 @@ class ProductdetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setuplayout()
+
+//global.v2.frame = CGRect(x: 0, y: 60, width:  UIApplication.shared.keyWindow!.frame.width, height: 50)
         // Do any additional setup after loading the view.
     }
     func setuplayout(){

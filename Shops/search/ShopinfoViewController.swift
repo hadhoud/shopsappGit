@@ -60,6 +60,7 @@ class ShopinfoViewController: UIViewController ,UITableViewDataSource,UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     // UIApplication.shared.keyWindow!.addSubview(global.v2)
         mytableview.dataSource = self
         
         fillshopddata()
