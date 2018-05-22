@@ -412,11 +412,11 @@ class MainViewController: UIViewController , UITextFieldDelegate, CLLocationMana
     func display_Ads(){
         let window = UIApplication.shared.keyWindow!
        
-        global.v2 = UIImageView(frame: CGRect(x: 0, y: window.frame.height * 0.82, width:  window.frame.width, height: 50))
+        global.v2 = UIImageView(frame: CGRect(x: 0, y: window.frame.height - (self.navigationController?.navigationBar.frame.height)! - 50, width:  window.frame.width, height: 50))
         v2 = global.v2
         v2.image = #imageLiteral(resourceName: "Logo")
-        //window.addSubview(v2!)
-   self.view.superview?.superview?.addSubview(v2)
+        window.addSubview(v2!)
+  // self.view.superview?.superview?.addSubview(v2)
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(Ad_click(sender:)))
         v2?.isUserInteractionEnabled = true
         v2?.addGestureRecognizer(gesture)
